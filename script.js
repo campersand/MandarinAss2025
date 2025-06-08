@@ -15,25 +15,47 @@ function startQuiz() {
 
 function showQuestion() {
   const q = shuffled[current];
-  const questionText = q.word || q.sentence;
-
-  document.getElementById("question-number").innerText = `Soal ${current + 1}`;
-  document.getElementById("question-text").innerText = questionText;
-
+  const questionNumberEl = document.getElementById("question-number");
+  const questionTextEl = document.getElementById("question-text");
   const choicesDiv = document.getElementById("choices");
+  const nextBtn = document.getElementById("next-btn");
+
+  nextBtn.disabled = true;
   choicesDiv.innerHTML = "";
-  document.getElementById("next-btn").disabled = true;
+  const existingImg = document.querySelector("img.feedback");
+  if (existingImg) existingImg.remove();
 
-  const feedbackImage = document.querySelector("img.feedback");
-  if (feedbackImage) feedbackImage.remove();
+  questionNumberEl.innerText = `Soal ${current + 1}`;
 
-  const shuffledChoices = shuffle(q.choices);
-  shuffledChoices.forEach((choice) => {
-    const btn = document.createElement("button");
-    btn.textContent = choice;
-    btn.onclick = () => selectAnswer(btn, q.answer);
-    choicesDiv.appendChild(btn);
-  });
+  if (q.type === "arrange") {
+    // Soal susun kata
+    questionTextEl.innerHTML = `
+      Susun kata-kata berikut menjadi kalimat yang benar:<br>
+      <b>${shuffle(q.words).join(" / ")}</b>
+    `;
+
+    // Acak pilihan jawaban
+    const shuffledChoices = shuffle(q.choices);
+    shuffledChoices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice;
+      btn.onclick = () => selectAnswer(btn, q.answer);
+      choicesDiv.appendChild(btn);
+    });
+
+  } else {
+    // Soal vocab biasa
+    const question = q.word || q.sentence;
+    questionTextEl.innerText = question;
+
+    const shuffledChoices = shuffle(q.choices);
+    shuffledChoices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice;
+      btn.onclick = () => selectAnswer(btn, q.answer);
+      choicesDiv.appendChild(btn);
+    });
+  }
 }
 
 function selectAnswer(button, correctAnswer) {
@@ -50,10 +72,10 @@ function selectAnswer(button, correctAnswer) {
 
   if (button.textContent === correctAnswer) {
     score++;
-    feedback.src = "correct.png"; // gambar jawaban benar
+    feedback.src = "correct.png";  // gambar jawaban benar
   } else {
     button.classList.add("incorrect");
-    feedback.src = "wrong.png"; // gambar jawaban salah
+    feedback.src = "wrong.png";    // gambar jawaban salah
   }
 
   document.getElementById("choices").appendChild(feedback);
