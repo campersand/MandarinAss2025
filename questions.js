@@ -1,41 +1,80 @@
 const questions = [
-  { word: "火车站", choices: ["Stasiun kereta", "Terminal bus", "Bandara", "Restoran"], answer: "Stasiun kereta" },
+  // Soal vocab biasa (kata + arti)
   { word: "有意思", choices: ["Menarik", "Membosankan", "Penting", "Serius"], answer: "Menarik" },
-  { word: "但是", choices: ["Tapi", "Dan", "Karena", "Jika"], answer: "Tapi" },
-  { word: "虽然", choices: ["Walaupun", "Karena", "Jika", "Namun"], answer: "Walaupun" },
-  { word: "次", choices: ["Kali", "Menit", "Hari", "Bulan"], answer: "Kali" },
-  { word: "玩儿", choices: ["Bermain", "Belajar", "Bekerja", "Tidur"], answer: "Bermain" },
-  { word: "晴", choices: ["Cerah", "Mendung", "Hujan", "Salju"], answer: "Cerah" },
-  { word: "百", choices: ["Ratus", "Sepuluh", "Seribu", "Puluh"], answer: "Ratus" },
-  { word: "日", choices: ["Hari", "Bulan", "Tahun", "Jam"], answer: "Hari" },
-  { word: "新年", choices: ["Tahun baru", "Tahun lalu", "Bulan baru", "Hari ulang tahun"], answer: "Tahun baru" },
-  { word: "票", choices: ["Tiket", "Kertas", "Surat", "Koin"], answer: "Tiket" },
-  { word: "大家", choices: ["Semua", "Keluarga", "Teman", "Orang"], answer: "Semua" },
-  { word: "更", choices: ["Lebih", "Kurang", "Sedikit", "Lagi"], answer: "Lebih" },
-  { word: "阴", choices: ["Mendung", "Cerah", "Bersalju", "Panas"], answer: "Mendung" },
+  { word: "但是", choices: ["Tapi", "Karena", "Dan", "Atau"], answer: "Tapi" },
+  { word: "虽然", choices: ["Walaupun", "Sebab", "Jadi", "Tetapi"], answer: "Walaupun" },
+  { word: "次", choices: ["Kali", "Hari", "Minggu", "Bulan"], answer: "Kali" },
+  { word: "玩儿", choices: ["Bermain", "Berjalan", "Bekerja", "Belajar"], answer: "Bermain" },
+  { word: "晴", choices: ["Cerah", "Mendung", "Hujan", "Berangin"], answer: "Cerah" },
+  { word: "百", choices: ["Ratus", "Puluh", "Seribu", "Sepuluh"], answer: "Ratus" },
+  { word: "日", choices: ["Hari", "Malam", "Bulan", "Tahun"], answer: "Hari" },
+  { word: "新年", choices: ["Tahun baru", "Hari ulang tahun", "Musim panas", "Musim dingin"], answer: "Tahun baru" },
+  { word: "票", choices: ["Ticket", "Kartu", "Surat", "Uang"], answer: "Ticket" },
+  { word: "火车站", choices: ["Stasiun kereta", "Terminal bus", "Bandara", "Restoran"], answer: "Stasiun kereta" },
+  { word: "大家", choices: ["Semua", "Beberapa", "Sedikit", "Tidak"], answer: "Semua" },
+  { word: "更", choices: ["Lebih", "Kurang", "Sama", "Tidak"], answer: "Lebih" },
+  { word: "阴", choices: ["Mendung", "Cerah", "Hujan", "Berangin"], answer: "Mendung" },
 
-  { sentence: "我们一起去 ______ 吧。", choices: ["玩儿", "票", "百", "新年"], answer: "玩儿" },
-  { sentence: "今天的天气很 ______。", choices: ["晴", "百", "有意思", "票"], answer: "晴" },
-  { sentence: "他买了一张电影 ______。", choices: ["票", "新年", "阴", "大家"], answer: "票" },
-  { sentence: "他想再去一次中国，这已经是第三 ______ 了。", choices: ["次", "日", "票", "晴"], answer: "次" },
-  { sentence: "这个地方比那个地方 ______ 好。", choices: ["更", "百", "票", "新年"], answer: "更" },
-  { sentence: "我们 ______ 新年一起看电影。", choices: ["在", "百", "新年", "票"], answer: "新年" },
-  { sentence: "______ 都来了，就等你一个人了。", choices: ["大家", "新年", "阴", "晴"], answer: "大家" },
-  { sentence: "他很喜欢这本书，因为很 ______。", choices: ["有意思", "阴", "晴", "百"], answer: "有意思" },
-  { sentence: "今天是个 ______ 天，适合出去玩。", choices: ["晴", "阴", "票", "百"], answer: "晴" },
-  { sentence: "虽然下雨了，______ 我们还是出去玩。", choices: ["但是", "有意思", "百", "晴"], answer: "但是" },
-  { sentence: "______ 天气不好，我们还是去爬山了。", choices: ["虽然", "但是", "有意思", "票"], answer: "虽然" },
-  { sentence: "我们去了三 ______ 博物馆。", choices: ["次", "票", "阴", "晴"], answer: "次" },
-  { sentence: "他在 ______ 买了火车票。", choices: ["火车站", "大家", "有意思", "百"], answer: "火车站" },
-  { sentence: "明天是 ______，不用上班。", choices: ["新年", "火车站", "晴", "大家"], answer: "新年" },
-  { sentence: "他买了三 ______ 鸡蛋。", choices: ["百", "票", "日", "有意思"], answer: "百" },
-  { sentence: "星期日是一个 ______ 天。", choices: ["晴", "票", "火车站", "有意思"], answer: "晴" },
-  { sentence: "你今天来几 ______？", choices: ["次", "百", "票", "新年"], answer: "次" },
-  { sentence: "天气很 ______，我们不出去了。", choices: ["阴", "晴", "新年", "百"], answer: "阴" },
-  { sentence: "这个 ______ 是星期天。", choices: ["日", "新年", "票", "火车站"], answer: "日" },
-  { sentence: "请你给我一张电影 ______。", choices: ["票", "新年", "阴", "晴"], answer: "票" },
-  { sentence: "我觉得这个电影很 ______。", choices: ["有意思", "百", "火车站", "大家"], answer: "有意思" },
-  { sentence: "今天是星期天，天气很 ______。", choices: ["晴", "阴", "票", "百"], answer: "晴" },
-  { sentence: "这个问题 ______ 难了。", choices: ["有点", "票", "百", "大家"], answer: "有点" },
-  { sentence: "我们下周一起去 ______ 吧。", choices: ["玩儿", "百", "票", "日"], answer: "玩儿" }
+  // Soal kalimat pilihan ganda biasa
+  { sentence: "他觉得这本书很 ______。", choices: ["新年", "有意思", "票", "火车站"], answer: "有意思" },
+  { sentence: "今天天气很 ______。", choices: ["晴", "阴", "雨", "风"], answer: "晴" },
+  { sentence: "我们一起去 ______ 玩儿。", choices: ["公园", "商店", "学校", "饭馆"], answer: "公园" },
+  { sentence: "请给我两张 ______。", choices: ["票", "钱", "纸", "笔"], answer: "票" },
+
+  // Soal susun kata (arrange)
+  {
+    type: "arrange",
+    words: ["他", "觉得", "这本书", "有意思"],
+    choices: [
+      "他这本书觉得有意思",
+      "他觉得这本书有意思",
+      "觉得他有意思这本书",
+      "有意思觉得他这本书"
+    ],
+    answer: "他觉得这本书有意思"
+  },
+  {
+    type: "arrange",
+    words: ["我们", "一起", "去", "玩儿"],
+    choices: [
+      "我们一起去玩儿",
+      "一起我们去玩儿",
+      "我们去玩儿一起",
+      "去玩儿我们一起"
+    ],
+    answer: "我们一起去玩儿"
+  },
+  {
+    type: "arrange",
+    words: ["今天", "天气", "很", "晴"],
+    choices: [
+      "今天天气很晴",
+      "天气今天很晴",
+      "今天很晴天气",
+      "天气很晴今天"
+    ],
+    answer: "今天天气很晴"
+  },
+  {
+    type: "arrange",
+    words: ["我", "喜欢", "吃", "苹果"],
+    choices: [
+      "我喜欢吃苹果",
+      "喜欢我苹果吃",
+      "吃苹果我喜欢",
+      "苹果我喜欢吃"
+    ],
+    answer: "我喜欢吃苹果"
+  },
+  {
+    type: "arrange",
+    words: ["你", "叫什么", "名字"],
+    choices: [
+      "你叫什么名字",
+      "叫什么你名字",
+      "名字你叫什么",
+      "叫什么名字你"
+    ],
+    answer: "你叫什么名字"
+  }
 ];
