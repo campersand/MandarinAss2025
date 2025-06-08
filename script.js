@@ -3,7 +3,7 @@ let current = 0;
 let score = 0;
 
 function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
+  return [...array].sort(() => Math.random() - 0.5);
 }
 
 function startQuiz() {
@@ -22,28 +22,41 @@ function showQuestion() {
 
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
+  document.getElementById("next-btn").disabled = true;
 
-  q.choices.forEach((choice) => {
+  const feedbackImage = document.querySelector("img.feedback");
+  if (feedbackImage) feedbackImage.remove();
+
+  const shuffledChoices = shuffle(q.choices);
+  shuffledChoices.forEach((choice) => {
     const btn = document.createElement("button");
     btn.textContent = choice;
     btn.onclick = () => selectAnswer(btn, q.answer);
     choicesDiv.appendChild(btn);
   });
-
-  document.getElementById("next-btn").disabled = true;
 }
 
 function selectAnswer(button, correctAnswer) {
   const allButtons = document.querySelectorAll("#choices button");
-  allButtons.forEach(btn => btn.disabled = true);
+  allButtons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correctAnswer) {
+      btn.classList.add("correct");
+    }
+  });
+
+  const feedback = document.createElement("img");
+  feedback.classList.add("feedback");
 
   if (button.textContent === correctAnswer) {
     score++;
-    button.style.backgroundColor = "green";
+    feedback.src = "correct.png"; // gambar jawaban benar
   } else {
-    button.style.backgroundColor = "red";
+    button.classList.add("incorrect");
+    feedback.src = "wrong.png"; // gambar jawaban salah
   }
 
+  document.getElementById("choices").appendChild(feedback);
   document.getElementById("next-btn").disabled = false;
 }
 
